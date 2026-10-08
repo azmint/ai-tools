@@ -1,0 +1,7 @@
+{
+  "name": "subagent-tree",
+  "version": "0.1.0",
+  "description": "サブエージェントの親子関係と実行状態を枠付きペインにツリー表示する mod",
+  "author": { "name": "Yuki Roppongi" },
+  "types": "./types/index.d.ts"
+}
