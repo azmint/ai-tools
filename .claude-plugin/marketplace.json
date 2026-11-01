@@ -1,0 +1,15 @@
+{
+  "name": "azmint-ai-tools",
+  "description": "azmint/ai-tools の Claude Code プラグインを配布する marketplace",
+  "owner": {
+    "name": "Yuki Roppongi"
+  },
+  "plugins": [
+    {
+      "name": "6pg-practices",
+      "source": "./plugins/6pg-practices",
+      "description": "業務で使える、具体的すぎないプラクティスをまとめたスキル集",
+      "version": "0.1.0"
+    }
+  ]
+}

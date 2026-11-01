@@ -17,14 +17,43 @@
 
 ## 読み込み方
 
-次のいずれかで読み込む。
+### marketplace からインストールする（常に使う）
 
-- 1 セッションだけ試す: `claude --plugin-dir /path/to/ai-tools/plugins/6pg-practices`
-- 自分のプロジェクトで常に使う: `plugins/6pg-practices` をそのプロジェクトの `.claude/skills/6pg-practices/` にコピーする（プロジェクトの `.claude/skills/` のプラグインは、そのプロジェクトのセッションで自動で読み込まれる）
-- Desktop アプリを含め全セッションで使う: `~/.claude/settings.json` の `env` に `CLAUDE_CODE_PLUGIN_DIRS`（絶対パス）を設定する
+このリポジトリは marketplace `azmint-ai-tools` を兼ねている。marketplace を一度追加し、そこからインストールする。
+
+Claude Code のセッション内で:
+
+```text
+/plugin marketplace add azmint/ai-tools
+/plugin install 6pg-practices@azmint-ai-tools
+```
+
+`/plugin install` はすぐにはインストールせず、プラグインの詳細画面を開く。そこでスコープ（自分の全プロジェクト / このリポジトリの全員 / このリポジトリの自分だけ）を選ぶ。
+
+シェルから:
+
+```bash
+claude plugin marketplace add azmint/ai-tools
+claude plugin install 6pg-practices@azmint-ai-tools
+```
+
+シェルの `claude plugin install` は既定でユーザースコープに入る。`--scope project` か `--scope local` で変えられる。開いているセッションには `/reload-plugins` で反映する。
+
+### 1 セッションだけ試す
+
+```bash
+claude --plugin-dir /path/to/ai-tools/plugins/6pg-practices
+```
+
+`--plugin-dir` を付けられない起動方法では、環境変数 `CLAUDE_CODE_PLUGIN_DIRS` に絶対パスを入れても同じように読み込まれる（v2.1.280 以上。プロジェクト・ローカルの settings の `env` では設定できない）。
+
+### リポジトリに同梱する
+
+`plugins/6pg-practices` を、使いたいリポジトリの `.claude/skills/6pg-practices/` にコピーする（`.claude-plugin/plugin.json` ごと）。そのリポジトリのルートで起動し、ワークスペースの信頼ダイアログを承認したセッションで読み込まれる。
 
 ## 検証
 
 ```bash
 claude plugin validate --strict plugins/6pg-practices
+claude plugin validate --strict .   # marketplace（リポジトリのルートで）
 ```
