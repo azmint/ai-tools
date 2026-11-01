@@ -15,6 +15,10 @@
 
 今後もスキルを追加していく。
 
+## 必要なもの
+
+Claude Code v2.1.239 で動作を確認した。
+
 ## 読み込み方
 
 ### marketplace からインストールする（常に使う）
@@ -39,6 +43,8 @@ claude plugin install 6pg-practices@azmint-ai-tools
 
 シェルの `claude plugin install` は既定でユーザースコープに入る。`--scope project` か `--scope local` で変えられる。開いているセッションには `/reload-plugins` で反映する。
 
+version を固定していないので、main への変更がそのまま更新として届く（コミットが変わると新しい版として扱われる）。自動更新を有効にしていなければ、`/plugin marketplace update azmint-ai-tools` か `claude plugin update 6pg-practices@azmint-ai-tools` で取り込む。
+
 ### 1 セッションだけ試す
 
 ```bash
@@ -49,7 +55,7 @@ claude --plugin-dir /path/to/ai-tools/plugins/6pg-practices
 
 ### リポジトリに同梱する
 
-`plugins/6pg-practices` を、使いたいリポジトリの `.claude/skills/6pg-practices/` にコピーする（`.claude-plugin/plugin.json` ごと）。そのリポジトリのルートで起動し、ワークスペースの信頼ダイアログを承認したセッションで読み込まれる。
+`plugins/6pg-practices` を、使いたいリポジトリの `.claude/skills/6pg-practices/` にコピーする（`.claude-plugin/plugin.json` ごと）。そのリポジトリのルートで起動し、ワークスペースの信頼ダイアログを承認したセッションで読み込まれる。管理者が skills-directory のプラグインを止めている環境（managed settings の `strictKnownMarketplaces` に `skills-dir` がない、または `strictPluginOnlyCustomization` を設定している）では読み込まれない。
 
 ## 検証
 
