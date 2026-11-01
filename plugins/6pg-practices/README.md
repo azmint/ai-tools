@@ -17,7 +17,7 @@
 
 ## 必要なもの
 
-Claude Code v2.1.239 で動作を確認した。
+Claude Code v2.1.239 で動作を確認した。`CLAUDE_CODE_PLUGIN_DIRS` での読み込みは v2.1.280 以上が必要（公式ドキュメントによる。未確認）。
 
 ## 読み込み方
 
@@ -60,6 +60,8 @@ claude --plugin-dir /path/to/ai-tools/plugins/6pg-practices
 ## 検証
 
 ```bash
-claude plugin validate --strict plugins/6pg-practices
-claude plugin validate --strict .   # marketplace（リポジトリのルートで）
+claude plugin validate plugins/6pg-practices
+claude plugin validate .   # marketplace（リポジトリのルートで）
 ```
+
+version を固定しない方針のため、version 未指定の warning が 1 件出る（`--strict` では失敗扱いになる）。
